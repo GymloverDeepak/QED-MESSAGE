@@ -82,7 +82,7 @@ function Signup() {
       const response = await axios.post(`${envAPI_URL}auth/verifysignupotp`, { id: signupId, otp }, {
         headers: { "Content-Type": "application/json" },
       });
-      if (response.data.status === 200) {
+      if (response.data.status === 201) {
         dispatch(QedMessageAction.userAuthantication(response.data.data.token));
         alert("OTP verified successfully!");
         navigate("/home");
