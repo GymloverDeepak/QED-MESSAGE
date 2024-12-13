@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Components/Home';
 import ForgotPassword from './Components/ForgotPassword';
 import Signup from './Components/Signup';
+import UpdateBio from './Components/UpdateBio';
 function App() {
   return (<>
      <BrowserRouter>
@@ -19,6 +20,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Home />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/updateBio"
+            element={
+              <PrivateRoute>
+                <UpdateBio />
               </PrivateRoute>
             }
           />

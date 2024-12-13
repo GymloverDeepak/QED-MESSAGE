@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { QedMessageAction } from "../ReduxStore/Index";
-import Alert from "../Components/Alert";
+import Modal from "../Components/Model"; 
 import eyeSlashIcon from "../Assets/images/eye-slash.png";
 import "../Components/login.css";
 
@@ -21,6 +21,7 @@ function Login() {
   }, []);
 
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false); 
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -45,8 +46,9 @@ function Login() {
       console.log("userLogin", response.data.data);
       if (response.data.status === 200) {
         dispatch(QedMessageAction.userAuthantication(response.data.data));
-        alert(response.data.message)
-        navigate("/home"); // Redirect to the home page
+        // alert(response.data.message)
+        setShowModal(true);
+        // navigate("/home"); // Redirect to the home page
       } else {
         alert(response.data.data.message)
         setError(response.data.data.message); // Display error message
@@ -70,10 +72,26 @@ function Login() {
     };
 
     userLogin(updatedUserData);
-  };
 
+   
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/home"); 
+  };
+  const updateBio = () => {
+    setShowModal(false);
+    navigate("/updateBio"); 
+  };
   return (
     <>
+       <Modal
+        show={showModal}
+        onClose={closeModal}
+        updateBio={updateBio}
+        title="Login Successful"
+        message="Welcome back! You have successfully logged in."
+      />
       <div className="container-fluid">
         <div className="row no-gutter">
           <div className="col-md-6 d-none d-md-flex bg-image"></div>
