@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { QedMessageAction } from "../ReduxStore/Index";
-
+import Modal from "../Components/Model"; 
 function Otp({ signupId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function Otp({ signupId }) {
 
   const [otp, setOtp] = useState(""); // Store OTP as a string
   const inputsRef = useRef([]); // Reference to input fields
-
+  const [showModal, setShowModal] = useState(false); 
   // Handle input change
   const handleChange = (e, index) => {
     const { value } = e.target;
@@ -53,7 +53,7 @@ function Otp({ signupId }) {
       if (response.data.status === 201) {
         dispatch(QedMessageAction.userAuthantication(response.data.data.token));
         alert("OTP verified successfully!");
-        navigate("/home");
+        setShowModal(true);
       } else {
         alert(response.data.message);
       }
@@ -61,8 +61,20 @@ function Otp({ signupId }) {
       console.error("Error during OTP verification:", error.message);
     }
   };
-
-  return (
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/home"); 
+  };
+  
+  return (<>
+     <Modal
+        show={showModal}
+        onClose={closeModal}
+        signupId={signupId}
+        title="Signup Successful"
+        message="Welcome ! You have successfully Sign up."
+      />
+      
     <div className="container">
       <div className="row">
         <div className="col-lg-10 col-xl-7 mx-auto">
@@ -99,6 +111,7 @@ function Otp({ signupId }) {
         </div>
       </div>
     </div>
+  </>
   );
 }
 
