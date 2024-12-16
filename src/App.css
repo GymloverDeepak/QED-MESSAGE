@@ -1,38 +1,166 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.login,
+.image {
   min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url("./Assets/images/login-image.png");
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+
+.sign-in-font{
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.form-md { 
+  width: 100%; 
+  text-align: center; 
+  margin: 32px auto 32px auto; 
+  position: relative;
+}
+
+.form-md-bio{
+ text-align: start;
+}
+
+.form-md-bio textarea{
+  border-radius: 6px;
+  border: 1px solid #D6E3FD;
+}
+
+form textarea input:focus {
+  border: 1px solid #D6E3FD;
+}
+
+.form-md .form-group {
+  margin-left: auto;
+  margin-right: auto;
+  /* max-width: 320px; */
+}
+.form-group {
+  margin-top: 16px;
+  position: relative;
+}
+
+.form-group input{
+  border-radius: 12px !important;
+  height: 44px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+input {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.37);
+  border-radius: 4px;
+  background-color: transparent;
+  margin: 0px auto;
+  padding: 6px 4px 4px 14px;
+  height: 40px;
+  outline: none !important;
+  font-size: 16px;
+  color: rgba(0,0,0,0.85);
+  transition: all .2s ease-in-out;
+}
+
+label {
+  position: absolute;
+  top: 13px; 
+  left: 12px;
+  text-align: left;
+  display: inline-block;
+  padding: 0 4px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  background: #fff;
+  color: gray;
+  margin: 0px auto;
+  cursor: text;
+  transition: all .15s ease-in-out;
+}
+input:hover, input:focus { border: 1px solid lightgray; }
+
+input:valid + label, input:focus + label { 
+  top: -6px;
+  color: #3275F5;
+  /* font-weight: bold; */
+}
+/* .gl-form-asterisk {
+    background-color: inherit;
+    color: #e32b2b;
+    padding: 0;
+    padding-left: 3px;
+   
+}
+.gl-form-asterisk:after {
+    content: "*";
+}
+ */
+
+ .forgot-password{
+  font-size: 12px;
+  font-weight: 500;
+  color: #3275F5;
+ }
+
+ .sign-in-btn{
+  border: none;
+  height: 44px;
+  background-color: #EBEBEB;
+  border-radius: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #A1A1A1;
+ }
+
+ .sign-up-text{
+  font-size: 12px;
+  font-weight: 400;
+  color: #A1A1A1;
+ }
+
+ .sign-up-text span{
+  color: #3275F5;
+  font-weight: 500;
+ }
+
+ .eye-icon{
+  position: absolute;
+  right: 5%;
+  top: 30%;
+  cursor: pointer;
+ }
+
+ .row-otp {
+  margin: auto; /* center horizontally */
+  
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: row nowrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.row-otp input {
+  margin: 0.5rem;
+  /* padding: 1.5rem; */
+  max-width: 2rem;
+  text-align: center;
+  border-radius: 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* remove the up/down spinner in number input
+   source - https://css-tricks.com/snippets/css/turn-off-number-input-spinners/
+*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
+ 

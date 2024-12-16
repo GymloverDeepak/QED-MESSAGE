@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { QedMessageAction } from "../ReduxStore/Index";
 import eyeSlashIcon from "../Assets/images/eye-slash.png";
 import axios from "axios";
+import Otp from "./Otp";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -77,23 +78,7 @@ function Signup() {
     }
   };
 
-  const verifyOtp = async () => {
-    try {
-      const response = await axios.post(`${envAPI_URL}auth/verifysignupotp`, { id: signupId, otp }, {
-        headers: { "Content-Type": "application/json" },
-      });
-      if (response.data.status === 201) {
-        dispatch(QedMessageAction.userAuthantication(response.data.data.token));
-        alert("OTP verified successfully!");
-        navigate("/home");
-      } else {
-        alert(response.data.message);
-      }
-    } catch (error) {
-      console.error("Error during OTP verification:", error.message);
-    }
-  };
-
+ 
   const resendOtp = async () => {
     try {
       const response = await axios.post(`${envAPI_URL}auth/regeneratesignupotp`, { id: signupId }, {
@@ -119,9 +104,6 @@ function Signup() {
             <div className="container">
               <div className="row">
                 <div className="col-lg-10 col-xl-7 mx-auto">
-                  <h3 className="display-6 sign-in-font mb-3">
-                    {isOtpSent ? "Verify OTP" : "Create Account"}
-                  </h3>
                   <form className="form-md" onSubmit={handleSubmit}>
                     {!isOtpSent ? (
                       <>
@@ -224,7 +206,7 @@ function Signup() {
                       </>
                     ) : (
                       <>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                           <input
                             id="form_otp"
                             className="form-control"
@@ -235,16 +217,9 @@ function Signup() {
                             required
                           />
                           <label htmlFor="form_otp">Enter OTP</label>
-                        </div>
-                        <div className="form-group mt-5">
-                          <button
-                            type="button"
-                            className="button btn btn-primary sign-in-btn w-100"
-                            onClick={verifyOtp}
-                          >
-                            Verify OTP
-                          </button>
-                        </div>
+                        </div> */}
+                        <Otp signupId={signupId} />
+                    
                         <div className="form-group mt-2">
                           <button
                             type="button"
